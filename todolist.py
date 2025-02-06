@@ -18,7 +18,7 @@ while True:
     elif user_action.startswith("show"):
         todos = functions.get_todos()
 
-        for index, item in enumerate(todos,1):
+        for index, item in enumerate(todos, 1):
             item = item.strip("\n")
             print(f"{index} - {item}")
     elif user_action.startswith("edit"):
@@ -53,4 +53,3 @@ while True:
     else:
         print("Command is not valid!")
 print("Bye!")
-
