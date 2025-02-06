@@ -1,7 +1,7 @@
 import functions
 import FreeSimpleGUI as sg
 
-label = sg.Text("Type in a To-do")
+label = sg.Text("Type in a To-do ")
 input_text = sg.InputText(tooltip="Enter todo")
 add_button = sg.Button("Add")
 
