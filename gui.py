@@ -9,8 +9,12 @@ list_box = sg.Listbox(values=functions.get_todos(), key='edit_todos',
                       enable_events=True, size=[45, 10])
 edit_button = sg.Button("Edit")
 
+complete_button = sg.Button("Complete")
+exit_button = sg.Button("Exit")
+
 window = sg.Window("My Task-list App",
-                   layout=[[label], [input_text, add_button], [list_box, edit_button]],
+                   layout=[[label], [input_text, add_button],
+                           [list_box, edit_button], [complete_button, exit_button]],
                    font=("Helvetica", 15))
 while True:
     event, values = window.read()
@@ -32,11 +36,22 @@ while True:
             todos[index] = new_todo
             functions.write_todos(todos)
             window['edit_todos'].update(values=todos)
+        case "Complete":
+            todo_to_complete = values["edit_todos"][0]
+            todos = functions.get_todos()
+            index = todos.index(todo_to_complete)
+            todos.pop(index)
+            functions.write_todos(todos)
+            window['edit_todos'].update(values=todos)
+            window['new_todo'].update(value='')
+        case "Exit":
+            break
         case "edit_todos":
-            window['new_todo'].update(value=values['edit_todos'][0])
+            window["new_todo"].update(value=values['edit_todos'][0])
         case sg.WIN_CLOSED:
             break
 
 window.close()
+
 
 
